@@ -69,4 +69,17 @@ dependencies {
 
     // view binding
     implementation (libs.viewbindingpropertydelegate.noreflection)
+
+    //swipedreshreshlayout
+    implementation(libs.androidx.swiperefreshlayout)
+
+
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+
+    // To use Kotlin Symbol Processing (KSP)
+    ksp(libs.androidx.room.compiler)
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.ktx)
 }
