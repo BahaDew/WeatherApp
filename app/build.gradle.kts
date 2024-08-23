@@ -53,11 +53,17 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // navigation
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
 
+    // dagger hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
+    //timber log
     implementation (libs.timber)
+
+    // gif view
+    implementation (libs.android.gif.drawable)
 }
