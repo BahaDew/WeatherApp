@@ -66,4 +66,7 @@ dependencies {
 
     // gif view
     implementation (libs.android.gif.drawable)
+
+    // view binding
+    implementation (libs.viewbindingpropertydelegate.noreflection)
 }
