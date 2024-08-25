@@ -2,6 +2,7 @@ package uz.bahadew.weatherapp.presentation.screen.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -17,7 +18,7 @@ import uz.bahadew.weatherapp.navigation.AppNavigator
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+@HiltViewModel
 class MainViewModelImpl @Inject constructor(
     private val appRepository: AppRepository,
     private val appNavigator: AppNavigator
