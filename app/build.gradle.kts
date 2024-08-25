@@ -62,24 +62,26 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     //timber log
-    implementation (libs.timber)
+    implementation(libs.timber)
 
     // gif view
-    implementation (libs.android.gif.drawable)
+    implementation(libs.android.gif.drawable)
 
     // view binding
-    implementation (libs.viewbindingpropertydelegate.noreflection)
+    implementation(libs.viewbindingpropertydelegate.noreflection)
 
     //swipedreshreshlayout
     implementation(libs.androidx.swiperefreshlayout)
 
-
+    //room
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
-
     // To use Kotlin Symbol Processing (KSP)
     ksp(libs.androidx.room.compiler)
-
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation (libs.converter.gson)
 }

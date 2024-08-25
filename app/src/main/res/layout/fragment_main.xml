@@ -19,17 +19,18 @@
             android:layout_gravity="center|start"
             android:layout_marginStart="15dp"
             android:text="@string/app_name"
+            android:textColor="#000000"
             android:textSize="24dp" />
 
         <ImageView
             android:id="@+id/btn_search"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:layout_gravity="end|center"
             android:layout_marginEnd="10dp"
             android:background="@drawable/ripple_circle_black"
             android:contentDescription="@string/app_name"
-            android:padding="6dp"
+            android:padding="8dp"
             android:src="@drawable/search_svgrepo_com"
             app:tint="#000000" />
     </FrameLayout>
