@@ -29,5 +29,9 @@
         android:id="@+id/infoScreen"
         android:name="uz.bahadew.weatherapp.presentation.screen.info.InfoScreen"
         android:label="fragment_info"
-        tools:layout="@layout/fragment_info" />
+        tools:layout="@layout/fragment_info" >
+        <argument
+            android:name="weaterUIData"
+            app:argType="uz.bahadew.weatherapp.data.model.WeatherUIData" />
+    </fragment>
 </navigation>

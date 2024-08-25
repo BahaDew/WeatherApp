@@ -1,5 +1,9 @@
 package uz.bahadew.weatherapp.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class WeatherUIData(
     val region : String,
     val temp : Double,
@@ -12,4 +16,4 @@ data class WeatherUIData(
     val timezone : Long,
     val weatherMain: String,
     val weatherDescription: String
-)
+) : Parcelable
