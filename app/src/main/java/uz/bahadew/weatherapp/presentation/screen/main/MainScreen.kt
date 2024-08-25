@@ -67,7 +67,7 @@ class MainScreen : Fragment(R.layout.fragment_main) {
         viewModel
             .toastMessage
             .onEach { message ->
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             }.flowWithLifecycle(lifecycle)
             .launchIn(lifecycleScope)
     }
