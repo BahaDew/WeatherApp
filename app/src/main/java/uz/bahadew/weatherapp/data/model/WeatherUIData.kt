@@ -9,5 +9,7 @@ data class WeatherUIData(
     val sunRice : Long,
     val sunset : Long,
     val id : Long,
-    val timezone : Long
+    val timezone : Long,
+    val weatherMain: String,
+    val weatherDescription: String
 )

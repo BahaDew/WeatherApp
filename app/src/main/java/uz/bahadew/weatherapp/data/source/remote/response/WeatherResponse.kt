@@ -16,7 +16,7 @@ data class WeatherResponse(
     val timezone: Long,
     val id: Long,
     val name: String,
-    val cod: Int
+    val cod: Int,
 )
 
 data class Cord(
@@ -74,7 +74,9 @@ fun WeatherResponse.toWeatherUIData(): WeatherUIData {
         sunRice = sys.sunrice,
         sunset = sys.sunset,
         id = id,
-        timezone = timezone
+        timezone = timezone,
+        weatherMain = weather[0].main,
+        weatherDescription = weather[0].description
     )
 }
 /*
