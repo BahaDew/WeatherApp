@@ -20,8 +20,8 @@ data class WeatherResponse(
 )
 
 data class Cord(
-    val lon: Double,
-    val lat: Double
+    val lat: Double,
+    val lon: Double
 )
 
 data class Weather(

@@ -10,7 +10,7 @@ interface WeatherApi {
     // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=f23600911b1d116d8c6af59a946218f9"
     @GET("data/2.5/weather")
     suspend fun getWeatherByLatLon(
-        @Query(value = "lan")
+        @Query(value = "lat")
         lat: Double,
         @Query(value = "lon")
         lon: Double,

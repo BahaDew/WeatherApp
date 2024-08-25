@@ -14,6 +14,7 @@ import uz.bahadew.weatherapp.data.source.remote.response.Cord
 import uz.bahadew.weatherapp.data.source.remote.response.ErrorResponse
 import uz.bahadew.weatherapp.data.source.remote.response.toWeatherUIData
 import uz.bahadew.weatherapp.domain.AppRepository
+import uz.bahadew.weatherapp.utils.bahaLogger
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -28,17 +29,17 @@ class AppRepositoryImpl @Inject constructor(
 
     private val regionsCord = arrayListOf(
         // Farg'ona
-        Cord(lon = 40.37317079450999, lat = 71.7974996160707),
+        Cord(lat = 40.37317079450999, lon = 71.7974996160707),
         // Andijon
-        Cord(lon = 40.81498164980603, lat = 72.27479605110557),
+        Cord(lat = 40.81498164980603, lon = 72.27479605110557),
         // Oltiariq
-        Cord(lon = 40.40224554466811, lat = 71.48702396841807),
+        Cord(lat = 40.40224554466811, lon = 71.48702396841807),
         // Toshkent
-        Cord(lon = 41.29950542257913, lat = 69.24364551061205),
+        Cord(lat = 41.29950542257913, lon = 69.24364551061205),
         // Namangan
-        Cord(lon = 41.007150026619534, lat = 71.63774039904057),
+        Cord(lat = 41.007150026619534, lon = 71.63774039904057),
         // Qo'qon
-        Cord(lon = 40.534528081484964, lat = 70.9331836448178),
+        Cord(lat = 40.534528081484964, lon = 70.9331836448178),
     )
 
     override fun getAllRegionWeather(): Flow<Result<List<WeatherUIData>>> =
@@ -58,7 +59,9 @@ class AppRepositoryImpl @Inject constructor(
                         trySend(Result.success(list))
                     }
                 } else if (errorBody != null) {
-                    trySend(Result.failure(Throwable(gson.fromJson(errorBody.string(), ErrorResponse::class.java).message)))
+                    val errorMessage =
+                        gson.fromJson(errorBody.string(), ErrorResponse::class.java).message
+                    trySend(Result.failure(Throwable(errorMessage)))
                 } else {
                     trySend(Result.failure(Throwable("Nomalum xatolik!")))
                 }

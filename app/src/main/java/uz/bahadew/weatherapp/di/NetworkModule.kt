@@ -13,6 +13,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
+    // https://api.openweathermap.org/data/2.5/weather?lat=40.37317079450999&lon=71.7974996160707&appid=f23600911b1d116d8c6af59a946218f9
     @[Provides Singleton]
     fun provideRetrofit() : Retrofit {
         return Retrofit
