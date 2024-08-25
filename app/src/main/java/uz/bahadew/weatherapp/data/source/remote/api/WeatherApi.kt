@@ -11,9 +11,9 @@ interface WeatherApi {
     @GET("data/2.5/weather")
     suspend fun getWeatherByLatLon(
         @Query(value = "lan")
-        lat: String,
+        lat: Double,
         @Query(value = "lon")
-        lon: String,
+        lon: Double,
         @Query(value = "appid")
         appid: String
     ) : Response<WeatherResponse>

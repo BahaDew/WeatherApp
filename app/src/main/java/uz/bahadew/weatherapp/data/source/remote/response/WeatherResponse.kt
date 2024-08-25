@@ -1,6 +1,7 @@
 package uz.bahadew.weatherapp.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
+import uz.bahadew.weatherapp.data.model.WeatherUIData
 
 data class WeatherResponse(
     val cord: Cord,
@@ -62,6 +63,20 @@ data class Sys(
     val sunrice: Long,
     val sunset: Long
 )
+
+fun WeatherResponse.toWeatherUIData(): WeatherUIData {
+    return WeatherUIData(
+        region = name,
+        temp = main.temp,
+        windSpeed = wind.speed,
+        country = sys.country,
+        humidity = main.humidity,
+        sunRice = sys.sunrice,
+        sunset = sys.sunset,
+        id = id,
+        timezone = timezone
+    )
+}
 /*
 {
     "coord": {
