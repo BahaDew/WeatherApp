@@ -10,7 +10,6 @@ import uz.bahadew.weatherapp.data.source.local.entity.WeatherEntity
 
 @Dao
 interface WeatherDao {
-
     @Query("SELECT * FROM WeatherEntity")
     fun getAllWeather() : List<WeatherEntity>
 
