@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="app_main_color">#FFFFFF</color>
+    <color name="info_sc_text_color">#000000</color>
+    <color name="active_color">#DBE2E9</color>
 </resources>

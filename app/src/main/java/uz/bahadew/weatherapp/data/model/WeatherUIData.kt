@@ -10,7 +10,7 @@ data class WeatherUIData(
     val windSpeed : Float,
     val country : String,
     val humidity : Int,
-    val sunRice : Long,
+    val sunrise : Long,
     val sunset : Long,
     val id : Long,
     val timezone : Long,

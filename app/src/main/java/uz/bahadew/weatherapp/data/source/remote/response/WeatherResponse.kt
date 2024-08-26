@@ -71,7 +71,7 @@ fun WeatherResponse.toWeatherUIData(): WeatherUIData {
         windSpeed = wind.speed,
         country = sys.country,
         humidity = main.humidity,
-        sunRice = sys.sunrice,
+        sunrise = sys.sunrice,
         sunset = sys.sunset,
         id = id,
         timezone = timezone,

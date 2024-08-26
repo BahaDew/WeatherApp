@@ -52,7 +52,7 @@ class MainViewModelImpl @Inject constructor(
 
     override fun onClickItem(weatherUIData: WeatherUIData) {
         viewModelScope.launch {
-            appNavigator.navigateTo(MainScreenDirections.actionMainScreenToInfoScreen())
+            appNavigator.navigateTo(MainScreenDirections.actionMainScreenToInfoScreen(weaterUIData = weatherUIData))
         }
     }
 }

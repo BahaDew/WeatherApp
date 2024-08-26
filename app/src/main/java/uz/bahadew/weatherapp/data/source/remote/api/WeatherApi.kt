@@ -7,7 +7,7 @@ import uz.bahadew.weatherapp.data.source.remote.response.WeatherResponse
 
 interface WeatherApi {
 
-    // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=f23600911b1d116d8c6af59a946218f9"
+    // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=f23600911b1d116d8c6af59a946218f9
     @GET("data/2.5/weather")
     suspend fun getWeatherByLatLon(
         @Query(value = "lat")

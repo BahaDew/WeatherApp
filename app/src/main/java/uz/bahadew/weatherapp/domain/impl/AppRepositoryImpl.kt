@@ -30,16 +30,16 @@ class AppRepositoryImpl @Inject constructor(
     private val regionsCord = arrayListOf(
         // Farg'ona
         Cord(lat = 40.37317079450999, lon = 71.7974996160707),
-        // Andijon
-        Cord(lat = 40.81498164980603, lon = 72.27479605110557),
-        // Oltiariq
-        Cord(lat = 40.40224554466811, lon = 71.48702396841807),
-        // Toshkent
-        Cord(lat = 41.29950542257913, lon = 69.24364551061205),
-        // Namangan
-        Cord(lat = 41.007150026619534, lon = 71.63774039904057),
-        // Qo'qon
-        Cord(lat = 40.534528081484964, lon = 70.9331836448178),
+        // Mawsynram
+        Cord(lat = 25.298469, lon = 91.582992),
+        // Yuma Arizona
+        Cord(lat = 32.752148, lon = -113.935546),
+        // Choco Columbia
+        Cord(lat = 5.689275, lon = -76.657874),
+        // Sahara chuli
+        Cord(lat = 27.157611, lon = -13.207238),
+        // Alyaska ,
+        Cord(lat = 64.89147863708159, lon = -151.0057733924592),
     )
 
     override fun getAllRegionWeather(): Flow<Result<List<WeatherUIData>>> =

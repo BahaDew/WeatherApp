@@ -32,6 +32,7 @@
             android:contentDescription="@string/app_name"
             android:padding="8dp"
             android:src="@drawable/search_svgrepo_com"
+            android:visibility="gone"
             app:tint="#000000" />
     </FrameLayout>
 
@@ -44,6 +45,9 @@
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             tools:listitem="@layout/item_weather_data" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>
