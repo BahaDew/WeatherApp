@@ -16,37 +16,56 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|start"
-            android:layout_marginStart="15dp"
+            android:layout_gravity="center"
             android:text="@string/app_name"
             android:textColor="#000000"
             android:textSize="24dp" />
 
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/bg_search">
+
         <ImageView
-            android:id="@+id/btn_search"
             android:layout_width="38dp"
             android:layout_height="38dp"
-            android:layout_gravity="end|center"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/ripple_circle_black"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="6dp"
             android:contentDescription="@string/app_name"
             android:padding="8dp"
             android:src="@drawable/search_svgrepo_com"
-            android:visibility="gone"
             app:tint="#000000" />
-    </FrameLayout>
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="5dp"
+            android:layout_marginEnd="10dp"
+            android:autofillHints="name"
+            android:background="@android:color/transparent"
+            android:hint="Search..."
+            android:inputType="text"
+            android:textColorHint="#8B000000"
+            android:textColor="#000000"/>
+    </LinearLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingTop="15dp"
+            android:paddingTop="5dp"
             android:paddingBottom="15dp"
             tools:listitem="@layout/item_weather_data" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

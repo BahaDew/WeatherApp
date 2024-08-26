@@ -45,42 +45,67 @@ class AppRepositoryImpl @Inject constructor(
         Cord(lat = 64.89147863708159, lon = -151.0057733924592),
     )
 
-    override fun getAllRegionWeather(): Flow<Result<List<WeatherUIData>>> =
-        callbackFlow<Result<List<WeatherUIData>>> {
-            val list = ArrayList<WeatherUIData>()
-            val responseList = ArrayList<WeatherResponse>()
-            for (i in 0..<regionsCord.size) {
-                val response = weatherApi.getWeatherByLatLon(
-                    lat = regionsCord[i].lat,
-                    lon = regionsCord[i].lon,
-                    appid = apiKey
-                )
-                val body = response.body()
-                val errorBody = response.errorBody()
-                if (body != null && response.isSuccessful) {
-                    list.add(body.toWeatherUIData())
-                    responseList.add(body)
-                    if (i == regionsCord.size - 1) {
-                        trySend(Result.success(list))
-                        bahaLogger("SaLOM men hali ulganim yo hali")
-                        weatherDao.deleteAllWeather()
-                        for (j in 0..<responseList.size) {
-                            weatherDao.insertWeather(responseList[j].toWeatherEntityData())
-                        }
-                    }
-                } else if (i == regionsCord.size - 1) {
-                    if (errorBody != null) {
-                        val errorMessage =
-                            gson.fromJson(errorBody.string(), ErrorResponse::class.java).message
-                        trySend(Result.failure(Throwable(errorMessage)))
-                    } else {
-                        trySend(
-                            Result.success(
-                                weatherDao.getAllWeather().map { it.toWeatherUIData() })
-                        )
+    override fun getAllRegionWeather() = callbackFlow {
+        val list = ArrayList<WeatherUIData>()
+        val responseList = ArrayList<WeatherResponse>()
+        for (i in 0..<regionsCord.size) {
+            val response = weatherApi.getWeatherByLatLon(
+                lat = regionsCord[i].lat,
+                lon = regionsCord[i].lon,
+                appid = apiKey
+            )
+            val body = response.body()
+            val errorBody = response.errorBody()
+            if (body != null && response.isSuccessful) {
+                list.add(body.toWeatherUIData())
+                responseList.add(body)
+                if (i == regionsCord.size - 1) {
+                    trySend(Result.success(list))
+                    bahaLogger("SaLOM men hali ulganim yo hali")
+                    weatherDao.deleteAllWeather()
+                    for (j in 0..<responseList.size) {
+                        weatherDao.insertWeather(responseList[j].toWeatherEntityData())
                     }
                 }
+            } else if (i == regionsCord.size - 1) {
+                if (errorBody != null) {
+                    val errorMessage =
+                        gson.fromJson(errorBody.string(), ErrorResponse::class.java).message
+                    trySend(Result.failure(Throwable(errorMessage)))
+                } else {
+                    val daoList = weatherDao.getAllWeather().map { it.toWeatherUIData() }
+                    trySend(
+                        if (daoList.isNotEmpty()) {
+                            Result.success(daoList)
+                        } else {
+                            Result.failure(Throwable("Internet"))
+                        }
+                    )
+                }
             }
-            awaitClose()
-        }.flowOn(Dispatchers.IO).catch { emit(Result.success(weatherDao.getAllWeather().map { it.toWeatherUIData() })) }.flowOn(Dispatchers.IO)
+        }
+        awaitClose()
+    }.flowOn(Dispatchers.IO).catch {
+        val daoList = weatherDao.getAllWeather().map { it.toWeatherUIData() }
+        emit(
+            if (daoList.isNotEmpty()) {
+                Result.success(daoList)
+            } else {
+                Result.failure(Throwable("Internet"))
+            }
+        )
+    }.flowOn(Dispatchers.IO)
+
+    override fun searchRegion(name: String) = callbackFlow {
+        val daoList = weatherDao.getAllWeather()
+        val list = daoList.filter {
+            it.region.contains(
+                name,
+                ignoreCase = true
+            ) || it.country.contains(name, ignoreCase = true)
+        }
+            .map { it.toWeatherUIData() }
+        trySend(Result.success(list))
+        awaitClose()
+    }.flowOn(Dispatchers.IO).catch { emit(Result.failure(Throwable("Unknown Error!"))) }
 }

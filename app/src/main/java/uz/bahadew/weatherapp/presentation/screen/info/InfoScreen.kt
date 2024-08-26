@@ -49,8 +49,9 @@ class InfoScreen : Fragment(R.layout.fragment_info) {
             temp.text = " ${celsius.roundToInt()}"
             humidity.text = "${item.humidity} %"
             wind.text = "${item.windSpeed} m/s"
-            sunrise.text = millisecondToTime(item.sunrise, item.timezone)
-            sunset.text = millisecondToTime(item.sunset, item.timezone)
+            sunrise.text = secondToTime(item.sunrise, item.timezone)
+            sunset.text = secondToTime(item.sunset, item.timezone)
+            dataTime.text = secondToDate(item.dataTime, item.timezone)
         }
     }
 
@@ -58,8 +59,14 @@ class InfoScreen : Fragment(R.layout.fragment_info) {
 
     }
 
-    private fun millisecondToTime(time: Long, timeZone: Long): String {
+    private fun secondToTime(time: Long, timeZone: Long): String {
         val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
+        sdf.timeZone = TimeZone.getTimeZone("UTC")
+        return sdf.format(Date(time * 1000 + timeZone * 1000))
+    }
+
+    private fun secondToDate(time: Long, timeZone: Long): String {
+        val sdf = SimpleDateFormat("HH:mm • dd/MM/yyyy", Locale.getDefault())
         sdf.timeZone = TimeZone.getTimeZone("UTC")
         return sdf.format(Date(time * 1000 + timeZone * 1000))
     }

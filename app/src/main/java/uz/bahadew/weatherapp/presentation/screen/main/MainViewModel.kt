@@ -6,9 +6,10 @@ import uz.bahadew.weatherapp.data.model.WeatherUIData
 interface MainViewModel {
      val allRegionWeather : Flow<List<WeatherUIData>>
      val progressState : Flow<Boolean>
-     val toastMessage : Flow<String>
+     val warningDialogMessage : Flow<String>
 
      fun requestAllRegionWeather()
 
      fun onClickItem(weatherUIData: WeatherUIData)
+     fun searchRegion(name: String)
 }

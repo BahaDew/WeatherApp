@@ -16,5 +16,6 @@ data class WeatherEntity(
     val sunset : Long,
     val timezone : Long,
     val weatherMain: String,
-    val weatherDescription: String
+    val weatherDescription: String,
+    val dataTime : Long
 )

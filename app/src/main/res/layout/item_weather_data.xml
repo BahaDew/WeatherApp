@@ -29,9 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/regular"
             android:text="Weather"
             android:textColor="#FFFFFF"
-            android:fontFamily="@font/regular"
             android:textSize="15dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,8 +40,8 @@
             android:id="@+id/temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             android:text="20˚"
             android:textColor="#FFFFFF"
             android:textSize="50dp"
@@ -53,13 +53,13 @@
             android:id="@+id/region"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Region"
+            android:layout_marginBottom="9dp"
+            android:fontFamily="@font/regular"
+            android:text="Region  •  Country"
             android:textColor="#FFFFFF"
             android:textSize="16dp"
-            android:fontFamily="@font/regular"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/temp"
-            android:layout_marginBottom="9dp"
             app:layout_constraintLeft_toRightOf="@id/temp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

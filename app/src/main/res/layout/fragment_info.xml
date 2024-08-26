@@ -8,17 +8,33 @@
     android:orientation="vertical"
     tools:context="uz.bahadew.weatherapp.presentation.screen.info.InfoScreen">
 
-    <ImageView
-        android:id="@+id/btn_back"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/ripple_circle_black"
-        android:contentDescription="@string/app_name"
-        android:padding="6dp"
-        android:src="@drawable/left_chevron_svgrepo_com"
-        app:tint="@color/info_sc_text_color" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center|start"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/ripple_circle_black"
+            android:contentDescription="@string/app_name"
+            android:padding="6dp"
+            android:src="@drawable/left_chevron_svgrepo_com"
+            app:tint="@color/info_sc_text_color" />
+
+        <TextView
+            android:id="@+id/data_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="15dp"
+            android:text="13:00 • 08/27/2023"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/region"
@@ -271,5 +287,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
+
     </FrameLayout>
+
 </LinearLayout>

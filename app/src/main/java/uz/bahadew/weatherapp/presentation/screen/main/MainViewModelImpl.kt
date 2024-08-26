@@ -28,12 +28,16 @@ class MainViewModelImpl @Inject constructor(
         onBufferOverflow = BufferOverflow.DROP_LATEST
     )
     override val progressState = MutableStateFlow(false)
-    private var _toastMessage: ((message: String) -> Unit)? = null
-    override val toastMessage = channelFlow {
-        _toastMessage = { message ->
-            trySend(message)
+    private var _warningDialogMessage: ((message: String) -> Unit)? = null
+    override val warningDialogMessage = channelFlow {
+        _warningDialogMessage = { message ->
+            if (message == "Internet") {
+                trySend("No Internet connection found. Check your connection or try again")
+            } else {
+                trySend("Something went wrong. Please try again !")
+            }
         }
-        awaitClose { _toastMessage = null }
+        awaitClose { _warningDialogMessage = null }
     }
 
     override fun requestAllRegionWeather() {
@@ -45,7 +49,7 @@ class MainViewModelImpl @Inject constructor(
                 result.onSuccess { list ->
                     allRegionWeather.emit(list)
                 }.onFailure { error ->
-                    _toastMessage?.invoke(error.message.toString())
+                    _warningDialogMessage?.invoke(error.message.toString())
                 }
             }.launchIn(viewModelScope)
     }
@@ -54,5 +58,17 @@ class MainViewModelImpl @Inject constructor(
         viewModelScope.launch {
             appNavigator.navigateTo(MainScreenDirections.actionMainScreenToInfoScreen(weaterUIData = weatherUIData))
         }
+    }
+
+    override fun searchRegion(name: String) {
+        appRepository
+            .searchRegion(name = name)
+            .onEach { result ->
+                result.onSuccess { list ->
+                    allRegionWeather.emit(list)
+                }.onFailure { message ->
+                    _warningDialogMessage?.invoke(message.message.toString())
+                }
+            }.launchIn(viewModelScope)
     }
 }

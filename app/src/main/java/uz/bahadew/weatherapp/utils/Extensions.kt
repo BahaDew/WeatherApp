@@ -16,12 +16,12 @@ fun WeatherResponse.toWeatherUIData(): WeatherUIData {
         windSpeed = wind.speed,
         country = sys.country,
         humidity = main.humidity,
-        sunrise = sys.sunrice,
+        sunrise = sys.sunrise,
         sunset = sys.sunset,
-        id = id,
         timezone = timezone,
         weatherMain = weather[0].main,
-        weatherDescription = weather[0].description
+        weatherDescription = weather[0].description,
+        dataTime = dt
     )
 }
 
@@ -32,11 +32,12 @@ fun WeatherResponse.toWeatherEntityData(): WeatherEntity {
         windSpeed = wind.speed,
         country = sys.country,
         humidity = main.humidity,
-        sunrise = sys.sunrice,
+        sunrise = sys.sunrise,
         sunset = sys.sunset,
         timezone = timezone,
         weatherMain = weather[0].main,
-        weatherDescription = weather[0].description
+        weatherDescription = weather[0].description,
+        dataTime = dt
     )
 }
 
@@ -52,6 +53,6 @@ fun WeatherEntity.toWeatherUIData(): WeatherUIData {
         timezone = timezone,
         weatherMain = weatherMain,
         weatherDescription = weatherDescription,
-        id = id
+        dataTime = dataTime
     )
 }
