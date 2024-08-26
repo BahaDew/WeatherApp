@@ -2,8 +2,7 @@ package uz.bahadew.weatherapp.presentation.screen.info
 
 import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
-import android.icu.text.TimeZoneFormat
-import android.os.Build
+import android.icu.util.TimeZone
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -13,8 +12,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.bahadew.weatherapp.R
 import uz.bahadew.weatherapp.databinding.FragmentInfoBinding
-import uz.bahadew.weatherapp.utils.bahaLogger
-import java.time.format.DateTimeFormatter
+import java.util.Date
 import java.util.Locale
 import kotlin.math.roundToInt
 
@@ -51,8 +49,8 @@ class InfoScreen : Fragment(R.layout.fragment_info) {
             temp.text = " ${celsius.roundToInt()}"
             humidity.text = "${item.humidity} %"
             wind.text = "${item.windSpeed} m/s"
-            sunrise.text = millisecondToTime(item.sunrise)
-            sunset.text = millisecondToTime(item.sunset)
+            sunrise.text = millisecondToTime(item.sunrise, item.timezone)
+            sunset.text = millisecondToTime(item.sunset, item.timezone)
         }
     }
 
@@ -60,9 +58,9 @@ class InfoScreen : Fragment(R.layout.fragment_info) {
 
     }
 
-    private fun millisecondToTime(time: Long): String {
-        val parser = SimpleDateFormat("ss", Locale.getDefault())
-        val timeFormatter = SimpleDateFormat("mm:ss", Locale.getDefault())
-        return timeFormatter.format(parser.parse("${(time/1000).toInt()}"))
+    private fun millisecondToTime(time: Long, timeZone: Long): String {
+        val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
+        sdf.timeZone = TimeZone.getTimeZone("UTC")
+        return sdf.format(Date(time * 1000 + timeZone * 1000))
     }
 }

@@ -64,21 +64,6 @@ data class Sys(
     val sunset: Long
 )
 
-fun WeatherResponse.toWeatherUIData(): WeatherUIData {
-    return WeatherUIData(
-        region = name,
-        temp = main.temp,
-        windSpeed = wind.speed,
-        country = sys.country,
-        humidity = main.humidity,
-        sunrise = sys.sunrice,
-        sunset = sys.sunset,
-        id = id,
-        timezone = timezone,
-        weatherMain = weather[0].main,
-        weatherDescription = weather[0].description
-    )
-}
 /*
 {
     "coord": {
