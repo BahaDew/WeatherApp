@@ -50,6 +50,7 @@
             android:background="@android:color/transparent"
             android:hint="Search..."
             android:inputType="text"
+            android:textSize="17dp"
             android:textColorHint="#8B000000"
             android:textColor="#000000"/>
     </LinearLayout>
